@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>SELELO BUSINESS PARK - Purchase Order Generator</title>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <style>
@@ -15,8 +14,8 @@ body{
 
 button{
     margin:20px;
-    padding:14px 30px;
-    font-size:16px;
+    padding:12px 28px;
+    font-size:15px;
     font-weight:600;
     background:#000;
     color:#fff;
@@ -25,52 +24,54 @@ button{
 }
 
 #document{
-    width: 794px;
-    height: 1123px;
+    width:794px;
+    height:1123px;
     background:white;
-    margin: 20px auto;
-    padding:60px;
+    margin:20px auto;
+    padding:50px 55px 40px 55px;
     box-sizing:border-box;
     position:relative;
+    overflow:hidden;
 }
 
 /* LOGO */
 .logo{
     position:absolute;
-    top:45px;
-    left:60px;
-    width:130px;
+    top:40px;
+    left:55px;
+    width:120px;
     height:auto;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+    image-rendering:-webkit-optimize-contrast;
+    image-rendering:crisp-edges;
 }
 
 h1{
     text-align:center;
-    font-size:22px;
-    letter-spacing:1px;
+    font-size:20px;
     font-weight:bold;
+    margin:0;
+    margin-top:5px;
 }
 
 h2{
     text-align:center;
-    font-size:16px;
-    margin-bottom:25px;
+    font-size:14px;
+    margin:8px 0 18px 0;
     font-weight:600;
 }
 
 .section{
-    margin-top:20px;
+    margin-top:12px;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
-    font-size:13px;
+    font-size:12px;
 }
 
 table, th, td{
-    border:1.5px solid #000;
+    border:1.2px solid #000;
 }
 
 th{
@@ -79,29 +80,29 @@ th{
 }
 
 th, td{
-    padding:8px;
-    text-align:left;
+    padding:6px;
 }
 
-/* Totals Section */
+.items-table th, .items-table td{
+    padding:5px;
+}
+
 .totals-wrapper{
     display:flex;
     justify-content:flex-end;
-    margin-top:30px;
+    margin-top:18px;
 }
 
 .totals{
-    width:60%;
+    width:58%;
 }
 
-/* Signature Section */
 .signature{
-    margin-top:60px;
+    margin-top:25px;
 }
 
-/* Footer */
 .footer{
-    margin-top:50px;
+    margin-top:20px;
 }
 </style>
 </head>
@@ -158,7 +159,7 @@ th, td{
 </div>
 
 <div class="section">
-<table>
+<table class="items-table">
 <tr>
 <th>Item No.</th>
 <th>Material Description</th>
@@ -186,18 +187,16 @@ document.write(`
 </table>
 </div>
 
-<!-- Totals -->
 <div class="totals-wrapper">
-    <div class="totals">
-        <table>
-        <tr><td>Subtotal:</td><td></td></tr>
-        <tr><td>VAT (if applicable):</td><td></td></tr>
-        <tr><td><strong>Grand Total:</strong></td><td></td></tr>
-        </table>
-    </div>
+<div class="totals">
+<table>
+<tr><td>Subtotal:</td><td></td></tr>
+<tr><td>VAT (if applicable):</td><td></td></tr>
+<tr><td><strong>Grand Total:</strong></td><td></td></tr>
+</table>
+</div>
 </div>
 
-<!-- Signature -->
 <div class="signature">
 <table>
 <tr>
@@ -211,7 +210,6 @@ document.write(`
 </table>
 </div>
 
-<!-- Footer -->
 <div class="footer">
 <table>
 <tr>
@@ -228,19 +226,19 @@ function generatePDF(){
     const element = document.getElementById("document");
 
     const opt = {
-        margin: 0,
-        filename: 'Selelo_Purchase_Order.pdf',
-        image: { type: 'jpeg', quality: 1 },
-        html2canvas: { 
-            scale: 5,
-            useCORS: true,
-            dpi: 300,
-            letterRendering: true
+        margin:0,
+        filename:'Selelo_Purchase_Order.pdf',
+        image:{ type:'jpeg', quality:1 },
+        html2canvas:{
+            scale:5,
+            useCORS:true,
+            dpi:300,
+            letterRendering:true
         },
-        jsPDF: { 
-            unit: 'px',
-            format: [794,1123],
-            orientation: 'portrait'
+        jsPDF:{
+            unit:'px',
+            format:[794,1123],
+            orientation:'portrait'
         }
     };
 
