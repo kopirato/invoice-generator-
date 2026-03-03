@@ -8,15 +8,16 @@
 
 <style>
 body{
-    font-family: Arial, sans-serif;
-    background:#f0f0f0;
+    font-family: "Times New Roman", Times, serif;
+    background:#eaeaea;
     text-align:center;
 }
 
 button{
     margin:20px;
-    padding:12px 25px;
+    padding:14px 30px;
     font-size:16px;
+    font-weight:600;
     background:#000;
     color:#fff;
     border:none;
@@ -24,74 +25,79 @@ button{
 }
 
 #document{
-    width: 794px; /* A4 width in px */
-    height: 1123px; /* A4 height in px */
+    width: 794px;
+    height: 1123px;
     background:white;
     margin: 20px auto;
-    padding:40px 50px;
+    padding:60px 60px 60px 60px;
     box-sizing:border-box;
     position:relative;
 }
 
+/* HIGH QUALITY LOGO */
 .logo{
     position:absolute;
-    top:40px;
-    left:50px;
-    width:90px;
+    top:45px;
+    left:60px;
+    width:130px;   /* Increased from 90px */
     height:auto;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 
 h1{
     text-align:center;
-    font-size:20px;
+    font-size:22px;
     margin-top:10px;
     letter-spacing:1px;
+    font-weight:bold;
 }
 
 h2{
     text-align:center;
-    font-size:15px;
-    margin-bottom:20px;
+    font-size:16px;
+    margin-bottom:25px;
+    font-weight:600;
 }
 
 .section{
-    margin-top:15px;
+    margin-top:20px;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
-    font-size:12px;
+    font-size:13px;
 }
 
 table, th, td{
-    border:1px solid #000;
+    border:1.5px solid #000;
+}
+
+th{
+    font-weight:bold;
+    text-align:center;
 }
 
 th, td{
-    padding:6px;
+    padding:8px;
     text-align:left;
-}
-
-.small-table td{
-    border:none;
-    padding:3px;
 }
 
 .totals{
     width:60%;
     float:right;
-    margin-top:15px;
+    margin-top:20px;
 }
 
 .signature{
-    margin-top:50px;
+    margin-top:70px;
 }
 
 .footer{
     position:absolute;
-    bottom:40px;
-    width:calc(100% - 100px);
+    bottom:50px;
+    width:calc(100% - 120px);
 }
 </style>
 </head>
@@ -180,7 +186,7 @@ document.write(`
 <table>
 <tr><td>Subtotal:</td><td></td></tr>
 <tr><td>VAT (if applicable):</td><td></td></tr>
-<tr><td>Grand Total:</td><td></td></tr>
+<tr><td><strong>Grand Total:</strong></td><td></td></tr>
 </table>
 </div>
 
@@ -218,8 +224,17 @@ function generatePDF(){
         margin:       0,
         filename:     'Selelo_Purchase_Order.pdf',
         image:        { type: 'jpeg', quality: 1 },
-        html2canvas:  { scale: 3 },
-        jsPDF:        { unit: 'px', format: [794,1123], orientation: 'portrait' }
+        html2canvas:  { 
+            scale: 5,               // Increased from 3 → Ultra sharp
+            useCORS: true,
+            dpi: 300,
+            letterRendering: true
+        },
+        jsPDF:        { 
+            unit: 'px', 
+            format: [794,1123], 
+            orientation: 'portrait'
+        }
     };
 
     html2pdf().set(opt).from(element).save();
