@@ -29,17 +29,17 @@ button{
     height: 1123px;
     background:white;
     margin: 20px auto;
-    padding:60px 60px 60px 60px;
+    padding:60px;
     box-sizing:border-box;
     position:relative;
 }
 
-/* HIGH QUALITY LOGO */
+/* LOGO */
 .logo{
     position:absolute;
     top:45px;
     left:60px;
-    width:130px;   /* Increased from 90px */
+    width:130px;
     height:auto;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
@@ -48,7 +48,6 @@ button{
 h1{
     text-align:center;
     font-size:22px;
-    margin-top:10px;
     letter-spacing:1px;
     font-weight:bold;
 }
@@ -84,20 +83,25 @@ th, td{
     text-align:left;
 }
 
+/* Totals Section */
+.totals-wrapper{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:30px;
+}
+
 .totals{
     width:60%;
-    float:right;
-    margin-top:20px;
 }
 
+/* Signature Section */
 .signature{
-    margin-top:70px;
+    margin-top:60px;
 }
 
+/* Footer */
 .footer{
-    position:absolute;
-    bottom:50px;
-    width:calc(100% - 120px);
+    margin-top:50px;
 }
 </style>
 </head>
@@ -182,16 +186,18 @@ document.write(`
 </table>
 </div>
 
-<div class="totals">
-<table>
-<tr><td>Subtotal:</td><td></td></tr>
-<tr><td>VAT (if applicable):</td><td></td></tr>
-<tr><td><strong>Grand Total:</strong></td><td></td></tr>
-</table>
+<!-- Totals -->
+<div class="totals-wrapper">
+    <div class="totals">
+        <table>
+        <tr><td>Subtotal:</td><td></td></tr>
+        <tr><td>VAT (if applicable):</td><td></td></tr>
+        <tr><td><strong>Grand Total:</strong></td><td></td></tr>
+        </table>
+    </div>
 </div>
 
-<div style="clear:both;"></div>
-
+<!-- Signature -->
 <div class="signature">
 <table>
 <tr>
@@ -205,6 +211,7 @@ document.write(`
 </table>
 </div>
 
+<!-- Footer -->
 <div class="footer">
 <table>
 <tr>
@@ -221,18 +228,18 @@ function generatePDF(){
     const element = document.getElementById("document");
 
     const opt = {
-        margin:       0,
-        filename:     'Selelo_Purchase_Order.pdf',
-        image:        { type: 'jpeg', quality: 1 },
-        html2canvas:  { 
-            scale: 5,               // Increased from 3 → Ultra sharp
+        margin: 0,
+        filename: 'Selelo_Purchase_Order.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { 
+            scale: 5,
             useCORS: true,
             dpi: 300,
             letterRendering: true
         },
-        jsPDF:        { 
-            unit: 'px', 
-            format: [794,1123], 
+        jsPDF: { 
+            unit: 'px',
+            format: [794,1123],
             orientation: 'portrait'
         }
     };
